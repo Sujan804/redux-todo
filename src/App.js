@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import './App.css';
-
+import Navbar from './Navbar';
+import Homepage from './components/Homepage';
+import AddTask from './components/AddTask';
+import Todo from './components/Todo';
+import CompletedTodo from './components/CompletedTodo';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <BrowserRouter>
+   <Navbar/>
+   <Routes>
+        <Route path="/" element={<Homepage/>} />
+        <Route path='/add-task' element={<AddTask/>}/>
+        <Route path='/to-do' element = {<Todo/>}/>
+        <Route path='/completed' element = {<CompletedTodo/>}/>
+        {/* <Route path='*' element = {<NotFoundPage/>}/> */}
+     </Routes>
+   </BrowserRouter>
   );
 }
-
 export default App;
