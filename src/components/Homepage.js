@@ -1,9 +1,11 @@
-const Homepage = ()=>{
-   return(
+const Homepage = (props)=>{
+   
+    return(
         <>
-            <div>HomePage</div>
+            <h1 className="fond font text-3xl font-bold text-blue-500 mx-auto text-center justify-center flex mt-5">Welcome to do App</h1>
         </>
-   )
+    )
+   
    
     
 }

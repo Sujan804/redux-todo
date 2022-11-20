@@ -1,26 +1,30 @@
 import { useState } from "react";
-import todos from "../todolist";
+import { Link } from "react-router-dom";
 const AddTask = (props)=>{
+    const {onSendTask, lastId} = props;
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [verdict,setVerdict] = useState(false);
-    const [verdictBody, setVerdictBody] = useState('')
+    const [verdictBody, setVerdictBody] = useState('');
     const AddToList = ()=>{
         const newTask = {
             "title" : title,
-            "body": body
+            "body": body,
+            "completed" : false,
+            "id" : lastId+1
         }
         if(newTask.title.length<5){
             setVerdictBody("Please enter a valid Title");
         }else if(newTask.body.length<=10){
             setVerdictBody("Not added ! Text is so small!")
         }else{
-            todos.push(newTask);
+            onSendTask(newTask);
             setVerdictBody("Task Added!")
         }
         setVerdict(true);
         setBody('');
         setTitle('');
+
         setTimeout(() => {
             setVerdict(false);
         }, 3000);
@@ -31,7 +35,9 @@ const AddTask = (props)=>{
             <div className="flex flex-col mx-auto text-center">
                 <h1 className="font-bold  my-5">Add a new Task</h1>
                 {
-                  verdict &&  <h1 className="bg-yellow-100 w-96 mx-auto py-1 my-2 block transition duration-700 ease-in-out">{verdictBody}</h1>
+                  verdict &&  <h1 className="bg-yellow-100 w-96 mx-auto py-1 my-2 block transition duration-700 ease-in-out">{verdictBody}
+                    
+                  </h1>
                 }  
                 <div className="flex flex-col justify-evenly mx-auto">
                         <input type="text" className="w-96 h-12 border mb-5" placeholder="Title of task"
@@ -51,6 +57,7 @@ const AddTask = (props)=>{
                         <button className="bg-green-700 hover:bg-green-900 rounded-md py-4" 
                         onClick={AddToList}
                         >Add Task</button>
+                        {verdict && <Link to="/to-do">Go to list</Link>}
                 </div>
             </div>
         </>
