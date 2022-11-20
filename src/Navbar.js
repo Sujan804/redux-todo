@@ -4,7 +4,7 @@ const  Navbar = ()=>{
         <>
             <nav className="flex items-center  font-semibold justify-between px-8 py-4 bg-slate-600 text-white" >
                 <div>
-                    <img className="h-12 w-12" src="logo.png" alt="logo"/>
+                    <Link to="/"><img className="h-12 w-12" src="logo.png" alt="logo"/></Link>
                 </div>
                 <ul className="flex justify-between">
                     <li className="mx-6">
